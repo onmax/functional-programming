@@ -23,21 +23,20 @@ module Lab2(iota,inter,interOrdered,isMatch) where
 {- 2 -}
 {- iota n
      Create a list with the values: 0 to n-1
-     PRE: n > 0 <- IS THIS OK?
+     PRE: n >= 0
      RETURNS: [0 1 .. n-1]
      EXAMPLES: iota 5 = [0 1 2 3 4]
      iota 0 = []
 -}
 
 iota n = [0..n-1]
--- TODO: SHOULD WE REMOVE THE NEXT 2 LINES?
+--The expression above is not a function. However, for testing purposes(task 3.3), it is much faster to execute. Therefore, we use it here.
 --ota 0 = [] 
 --ota n = iota(n-1) ++ [n-1] 
 
 {- 3.1 -}
 {- inter a b
      Returns a list of the values that are in list a and b
-     PRE: <- TODO: I THINK THERE IS NO PRE
      RETURNS: A list of numbers
      EXAMPLES: iota [3 1 2] [4 3 2] = [2 3]
      iota [1 4 3 9 8 2] [5 7 7] = []
@@ -73,7 +72,6 @@ t2 = interOrdered s1 s2
 {- isMatch a b
      Easy implementation of regular expression. a will a string and b will be the pattern. Special chars:
      *: 0 or more chars. ?: Any char
-     PRE: <- TODO: I THINK THERE IS NO PRE
      RETURNS: A boolean that represents if the pattern b is in the string a
      EXAMPLES: 
      isMatch "aa" "aa" = True
