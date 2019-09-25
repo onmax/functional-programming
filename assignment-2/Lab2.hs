@@ -23,14 +23,14 @@ module Lab2(iota,inter,interOrdered,isMatch) where
 {- 2 -}
 {- iota n
      Create a list with the values: 0 to n-1
-     PRE: n > 0 <- IS THIS OK?
+     PRE: n >= 0
      RETURNS: [0 1 .. n-1]
      EXAMPLES: iota 5 = [0 1 2 3 4]
      iota 0 = []
 -}
 
 iota n = [0..n-1]
--- Other implementation using recursion
+--The expression above is not a function. However, for testing purposes(task 3.3), it is much faster to execute. Therefore, we use it here.
 --ota 0 = [] 
 --ota n = iota(n-1) ++ [n-1] 
 
