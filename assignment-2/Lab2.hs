@@ -30,22 +30,21 @@ module Lab2(iota,inter,interOrdered,isMatch) where
 -}
 
 iota n = [0..n-1]
--- TODO: SHOULD WE REMOVE THE NEXT 2 LINES?
+-- Other implementation using recursion
 --ota 0 = [] 
 --ota n = iota(n-1) ++ [n-1] 
 
 {- 3.1 -}
 {- inter a b
      Returns a list of the values that are in list a and b
-     PRE: <- TODO: I THINK THERE IS NO PRE
      RETURNS: A list of numbers
      EXAMPLES: iota [3 1 2] [4 3 2] = [2 3]
      iota [1 4 3 9 8 2] [5 7 7] = []
 -}
 inter [] _ = []
-inter a b = if elem (head a) b 
-            then [head a] ++ inter (tail a) b
-            else inter (tail a ) b 
+inter (a1:a) b = if elem a1 b
+                 then a1 : inter a b
+                 else inter a b
 
 {- 3.2 -}
 {- interOrdered a b
@@ -57,10 +56,9 @@ inter a b = if elem (head a) b
 -}
 interOrdered _ [] = []
 interOrdered [] _ = []
-interOrdered a b = if elem (head a) b 
-            then [head a] ++ inter (tail a) (tail b)
-            else inter (tail a) b 
-
+interOrdered (a1:a) b = if elem a1 b
+            then a1 : inter a b
+            else inter a b 
 {- 3.3 -}
 
 s1 = iota 100000
@@ -69,11 +67,27 @@ s2 = iota 1000000
 t1 = inter s1 s2
 t2 = interOrdered s1 s2
 
+{-
+*Lab2> length s1
+100000
+(0.02 secs, 7,268,760 bytes)
+*Lab2> length s2
+1000000
+(0.11 secs, 72,067,896 bytes)
+*Lab2> length t1
+100000
+(66.53 secs, 28,868,096 bytes)
+*Lab2> length t2
+100000
+(71.63 secs, 28,868,488 bytes)
+
+The output is not the desire one. We didn't find the optimal solution for interOrdered
+-}
+
 {- 4 -}
 {- isMatch a b
      Easy implementation of regular expression. a will a string and b will be the pattern. Special chars:
      *: 0 or more chars. ?: Any char
-     PRE: <- TODO: I THINK THERE IS NO PRE
      RETURNS: A boolean that represents if the pattern b is in the string a
      EXAMPLES: 
      isMatch "aa" "aa" = True
