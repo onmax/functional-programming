@@ -49,7 +49,7 @@ inter (a1:a) b = if elem a1 b
 {- 3.2 -}
 {- interOrdered a b
      Returns a list of the values that are in list a and b
-     PRE: a1 < a2 < .. < an && b1 < b2 < .. < bn; where aX and bX represent the value of the list in position X
+     PRE: a1 < a2 < .. < an && b1 < b2 < .. < bn; where aX and bY represent the value of the list in position X or Y
      RETURNS: A list of numbers
      EXAMPLES: interOrdered [1 2 3] [2 3 4] = [2 3]
      interOrdered [1 2 3 4 6 9] [5 7 7] = []
