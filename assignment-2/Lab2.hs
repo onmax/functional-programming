@@ -31,8 +31,8 @@ module Lab2(iota,inter,interOrdered,isMatch) where
 
 iota n = [0..n-1]
 --The expression above is not a function. However, for testing purposes(task 3.3), it is much faster to execute. Therefore, we use it here.
---ota 0 = [] 
---ota n = iota(n-1) ++ [n-1] 
+--iota 0 = [] 
+--iota n = iota(n-1) ++ [n-1] 
 
 {- 3.1 -}
 {- inter a b
