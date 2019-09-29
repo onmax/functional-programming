@@ -2,7 +2,7 @@
 
 module Lab3(Fruit(Apple,Banana,Lemon),sumPrice,BSTree(Void,BSNode),subTree,Tree(Node),count,labels,height,(++),elem,last,reverse,filter) where
 
-import Prelude hiding (elem,last,reverse,filter) --(++), 
+import Prelude hiding (elem,last,reverse,filter)
 
 -- /\/\/\ DO NOT MODIFY THE PRECEDING LINES /\/\/\
 
@@ -38,34 +38,41 @@ subTree min max Void = Void
 subTree min max (BSNode l v r) | v < max && v >= min = BSNode (subTree min max l) v (subTree min max r)
                                 | otherwise = if deeperValuesExist min max l then l else if deeperValuesExist min max r then r else Void
 
+inOrderList :: BSTree -> [Integer]
+inOrderList Void = []
+inOrderList (BSNode l x r) = inOrderList l ++ (x : inOrderList r)
+ 
 
+{-
+subTree min max (BSNode Void v Void) | v < max && v >= min = v
+subTree min max (BSNode l v r) = 
+    if v < min 
+    then -- we care about right
+    else if v > max
+        then -- we care about left
+        else
+            -- we care about right and left
+
+ -}
 {- 3.1 -}
 -- remember to provide the datatype representation
-data Tree a = Node a [Tree a] -- modify as needed
+data Tree a = Node  -- modify as needed
 
 {- 3.2 a) -}
 -- remember to provide a function specification
---count [] = 0
---count [el1 : array] = el1 + count array
---count [a] = 1 + count a
-counter [] = 0
-counter (a:array) = count a + counter array
-count (Node a array) = 1 + counter array
+count = undefined  -- remove "undefined" and write your function here
 
 {- 3.2 b) -}
 -- remember to provide a function specification
-label [] = []
-label (el:array) = labels el ++ label array
-labels (Node a array) = [a] ++ label array
+labels = undefined  -- remove "undefined" and write your function here
 
 {- 3.2 c) -}
 -- remember to provide a function specification
-height (Node a []) = 1
-height (Node a array) = maximum(map height array)
+height = undefined  -- remove "undefined" and write your function here
 
 {- 4.1 -}
 -- remember to provide a function specification
---(++) a b = foldl : b a 
+--(++) = ++  -- remove "undefined" and write your function here
 
 {- 4.2 -}
 -- remember to provide a function specification
@@ -81,4 +88,4 @@ reverse = undefined  -- remove "undefined" and write your function here
 
 {- 4.5 -}
 -- remember to provide a function specification
-filter function array = foldl (\filtered next -> if function next then next : filtered else filtered) [] array
+filter = undefined  -- remove "undefined" and write your function here

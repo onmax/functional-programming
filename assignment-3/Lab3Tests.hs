@@ -23,13 +23,7 @@ test1b = TestCase $ assertEqual "sumPrice [...] 3.0 2.0 5.0" 64.0
 
 -- subTree
 
-t = BSNode (BSNode (BSNode Void 0 (BSNode Void 2 Void))
-                   3
-                   (BSNode Void 5 Void))
-           6
-           (BSNode Void
-                   7
-                   (BSNode Void 8 (BSNode Void 9 Void)))
+t = BSNode (BSNode (BSNode Void 0 (BSNode Void 2 Void)) 3 (BSNode Void 5 Void)) 6 (BSNode Void 7 (BSNode Void 8 (BSNode Void 9 Void)))
 
 {- inOrderList t
    Converts a binary search tree into a list.
