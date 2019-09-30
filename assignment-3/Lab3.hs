@@ -2,7 +2,7 @@
 
 module Lab3(Fruit(Apple,Banana,Lemon),sumPrice,BSTree(Void,BSNode),subTree,Tree(Node),count,labels,height,(++),elem,last,reverse,filter) where
 
-import Prelude hiding (elem,last,reverse,filter) --(++), 
+import Prelude hiding (elem,last,reverse,filter, (++)) --(++), 
 
 -- /\/\/\ DO NOT MODIFY THE PRECEDING LINES /\/\/\
 
@@ -38,7 +38,6 @@ subTree min max Void = Void
 subTree min max (BSNode l v r) | v < max && v >= min = BSNode (subTree min max l) v (subTree min max r)
                                 | otherwise = if deeperValuesExist min max l then l else if deeperValuesExist min max r then r else Void
 
-
 {- 3.1 -}
 -- remember to provide the datatype representation
 data Tree a = Node a [Tree a] -- modify as needed
@@ -65,20 +64,22 @@ height (Node a array) = maximum(map height array)
 
 {- 4.1 -}
 -- remember to provide a function specification
---(++) a b = foldl : b a 
+(++) array1 array2 = foldr (\acc next -> acc : next ) array2 array1
+
 
 {- 4.2 -}
 -- remember to provide a function specification
-elem = undefined  -- remove "undefined" and write your function here
+elem a array = foldl(\acc next -> if a == next then True else acc) False array
 
 {- 4.3 -}
 -- remember to provide a function specification
-last = undefined  -- remove "undefined" and write your function here
+last (a:array) = foldl (\_ next -> next) a array
 
 {- 4.4 -}
 -- remember to provide a function specification
-reverse = undefined  -- remove "undefined" and write your function here
+reverse array = foldl (\acc next -> next : acc ) [] array
 
 {- 4.5 -}
 -- remember to provide a function specification
-filter function array = foldl (\filtered next -> if function next then next : filtered else filtered) [] array
+--filter function array = foldl (\filtered next -> if function next then next : filtered else filtered) [] array
+filter f array = foldl (\acc next -> if f next then acc ++ [next] else acc ) [] array
