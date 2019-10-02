@@ -7,8 +7,12 @@ import Prelude hiding (elem,last,reverse,filter, (++)) --(++),
 -- /\/\/\ DO NOT MODIFY THE PRECEDING LINES /\/\/\
 
 {- 1.1 -}
--- remember to provide the datatype representation
-data Fruit = Apple Double | Banana Double | Lemon Integer -- modify as needed
+{- Structure that represent:
+     1. Weight of apples
+     2. Weight of bananas
+     3. Number of lemons
+-}
+data Fruit = Apple Double | Banana Double | Lemon Integer
 
 {- 1.2 -}
 {- sumPrice [Fruit] a b c
@@ -53,22 +57,43 @@ subTree min max (BSNode l v r) | v < max && v >= min = BSNode (subTree min max l
                                 | otherwise = if deeperValuesExist min max l then l else if deeperValuesExist min max r then r else Void
 
 {- 3.1 -}
--- remember to provide the datatype representation
-data Tree a = Node a [Tree a] -- modify as needed
+{- Structure that represent a tree. First element is the value of the node, the second element is a list of the children
+-}
+data Tree a = Node a [Tree a]
 
 {- 3.2 a) -}
--- remember to provide a function specification
---count [] = 0
---count [el1 : array] = el1 + count array
---count [a] = 1 + count a
+{- counter [Tree]
+       Counts the number of elements given the list of children of a node
+       RETURNS: Number of elements in total in the list
+       EXAMPLES: counter [Node X []] = 1
+                 counter [Node X [Node Y [Node Z]]] = 3  
+-}
 counter [] = 0
 counter (a:array) = count a + counter array
+
+{- counter Tree
+       Counts the number of elements in a tree
+       RETURNS: Number of elements in total in the tree
+       EXAMPLES: count Node X1 [Node X2 []] = 2
+                 count Node X1 [Node X2 [Node X3 [Node X4]]] = 4
+-}
 count (Node a array) = 1 + counter array
 
 {- 3.2 b) -}
--- remember to provide a function specification
+{- label [Tree]
+       Obtains the values of the nodes given the list of children of a node
+       RETURNS: List of values of the nodes
+       EXAMPLES: counter [Node X []] = [X]
+                 counter [Node X [Node Y [Node Z]]] = [X, Y, Z]
+-}
 label [] = []
 label (el:array) = labels el ++ label array
+{- labels Tree
+       Obtains the values of the nodes given a tree
+       RETURNS: List of values of the nodes
+       EXAMPLES: count Node X1 [Node X2 []] = [X1, X2]
+                 count Node X1 [Node X2 [Node X3 [Node X4]]] = [X1, X2, X3, X4]
+-}
 labels (Node a array) = [a] ++ label array
 
 {- 3.2 c) -}
