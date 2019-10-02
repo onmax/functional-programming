@@ -50,7 +50,7 @@ deeperValuesExist min max (BSNode l v r) = if v < max && v >= min then True else
 {- subTree min max Tree
      Checks if the current node is between min and max to trim the tree. It uses deeperValuesExist to check children's children.
      RETURNS: Returns a pruned tree
-     EXAMPLES: subTree 2 3 (BSNode Void 0 (BSNode Void 2 Void)) 3 (BSNode Void 5 Void) = (BSNode Void 2 Void) 3 Void
+     EXAMPLES: subTree 2 3 (BSNode Void 0 (BSNode Void 2 Void)   ) 3 (BSNode Void 5 Void) = (BSNode Void 2 Void) 3 Void
 -}
 subTree min max Void = Void
 subTree min max (BSNode l v r) | v < max && v >= min = BSNode (subTree min max l) v (subTree min max r)
@@ -103,7 +103,7 @@ labels (Node a array) = [a] ++ label array
      EXAMPLES: height (Node 1 [Node 2 []]) = 2
 -}
 height (Node a []) = 1
-height (Node a array) = maximum(map height array)
+height (Node a array) = 1 + maximum(map height array)
 
 {- 4.1 -}
 {- (++) array1 array2
