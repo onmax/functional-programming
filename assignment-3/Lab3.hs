@@ -54,7 +54,7 @@ deeperValuesExist min max (BSNode l v r) = if v < max && v >= min then True else
 -}
 subTree min max Void = Void
 subTree min max (BSNode l v r) | v < max && v >= min = BSNode (subTree min max l) v (subTree min max r)
-                                | otherwise = if deeperValuesExist min max l then l else if deeperValuesExist min max r then r else Void
+                                | otherwise = if deeperValuesExist min max l then subTree min max l else if deeperValuesExist min max r then subTree min max r else Void
 
 {- 3.1 -}
 {- Structure that represent a tree. First element is the value of the node, the second element is a list of the children
