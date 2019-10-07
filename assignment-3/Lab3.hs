@@ -39,22 +39,18 @@ sumPrice (Lemon n:fruits) apple_price banana_price lemon_price = lemon_price * (
  -}
 data BSTree = Void | BSNode BSTree Integer BSTree  -- do not modify this line
 
-{- deeperValuesExist min max Tree
-     Checks if there are values between min and max that need to be added that are further down the tree than the current children.
-     RETURNS: Boolean
-     EXAMPLES: deeperValuesExist 5 8 (BSNode (BSNode Void 0 (BSNode Void 2 Void)) 3 (BSNode Void 5 Void)) = False
--}
-deeperValuesExist :: Integer -> Integer -> BSTree -> Bool
-deeperValuesExist min max Void = False
-deeperValuesExist min max (BSNode l v r) = if v < max && v >= min then True else deeperValuesExist min max l || deeperValuesExist min max r
 {- subTree min max Tree
      Checks if the current node is between min and max to trim the tree. It uses deeperValuesExist to check children's children.
      RETURNS: Returns a pruned tree
      EXAMPLES: subTree 2 3 (BSNode Void 0 (BSNode Void 2 Void)   ) 3 (BSNode Void 5 Void) = (BSNode Void 2 Void) 3 Void
 -}
+subTree :: Integer -> Integer -> BSTree -> BSTree
 subTree min max Void = Void
-subTree min max (BSNode l v r) | v < max && v >= min = BSNode (subTree min max l) v (subTree min max r)
-                                | otherwise = if deeperValuesExist min max l then l else if deeperValuesExist min max r then r else Void
+subTree min max (BSNode l v r) 
+          | v < max && v >= min = BSNode (subTree min max l) v (subTree min max r)
+          | v >= max = subTree min max l
+          | v < min = subTree min max r
+
 
 {- 3.1 -}
 {- Structure that represent a tree. First element is the value of the node, the second element is a list of the children
